@@ -5,6 +5,9 @@ fun main() {
     val gameTitle = "Elden Ring: Shadow of the Erdtree"
     val price = 750000
 
+    // Null Safety Challenge
+    val userNote: String? = null
+
     // Perhitungan diskon
     val discount = calculateDiscount(price)
     val finalPrice = price - discount
@@ -13,7 +16,8 @@ fun main() {
     printReceipt(
         title = gameTitle,
         originalPrice = price,
-        finalPrice = finalPrice
+        finalPrice = finalPrice,
+        userNote = userNote
     )
 }
 
@@ -26,11 +30,12 @@ fun calculateDiscount(price: Int): Int {
     }
 }
 
-// Cetak Struk (Named Arguments)
+// Cetak Struk (Named Arguments) dan Cetak Struk dengan Null Safety
 fun printReceipt(
     title: String,
     originalPrice: Int,
-    finalPrice: Int
+    finalPrice: Int,
+    userNote: String?
 ) {
     println("=".repeat(40))
     println("            STEAMKW STORE")
@@ -38,6 +43,12 @@ fun printReceipt(
     println("Judul Game  : $title")
     println("Harga Asli  : Rp $originalPrice")
     println("Harga Akhir : Rp $finalPrice")
+    println("-".repeat(40))
+
+    // Elvis Operator untuk null safety
+    val noteToPrint = userNote ?: "Tidak ada catatan"
+    println("Catatan     : $noteToPrint")
+
     println("=".repeat(40))
     println("Terima kasih telah berbelanja!")
 }
