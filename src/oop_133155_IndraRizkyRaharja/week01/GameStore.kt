@@ -9,10 +9,12 @@ fun main() {
     val discount = calculateDiscount(price)
     val finalPrice = price - discount
 
-    println("Game: $gameTitle")
-    println("Harga Asli: Rp $price")
-    println("Diskon: Rp $discount")
-    println("Harga Akhir: Rp $finalPrice")
+    // Cetak struk dengan named arguments
+    printReceipt(
+        title = gameTitle,
+        originalPrice = price,
+        finalPrice = finalPrice
+    )
 }
 
 // Logika Diskon (Expression Body)
@@ -22,4 +24,20 @@ fun calculateDiscount(price: Int): Int {
     } else {
         (price * 0.1).toInt()
     }
+}
+
+// Cetak Struk (Named Arguments)
+fun printReceipt(
+    title: String,
+    originalPrice: Int,
+    finalPrice: Int
+) {
+    println("=".repeat(40))
+    println("            STEAMKW STORE")
+    println("=".repeat(40))
+    println("Judul Game  : $title")
+    println("Harga Asli  : Rp $originalPrice")
+    println("Harga Akhir : Rp $finalPrice")
+    println("=".repeat(40))
+    println("Terima kasih telah berbelanja!")
 }
