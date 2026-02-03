@@ -1,9 +1,10 @@
 package oop_133155_IndraRizkyRaharja.week01
 
 fun main() {
+    //REFACTOR: Gunakan val dan hapus tipe data eksplisit
     var name: String = "IndraRizkyRaharja"
     var score: Int = 100
 
-    // Concatenation gaya lama
-    println("Nama: " + name + ", Nilai: " + score)
+    // REFACTOR: String Template ($name)
+    println("Nama: $name, Nilai: $score")
 }
