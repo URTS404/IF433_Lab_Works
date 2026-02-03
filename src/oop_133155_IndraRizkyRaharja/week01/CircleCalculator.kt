@@ -1,6 +1,6 @@
 package oop_133155_IndraRizkyRaharja.week01
 
-fun main(args: Array<String>) {
+fun main() {
     // Variable definition
     val radius = 7.0
     val pi = 3.14
