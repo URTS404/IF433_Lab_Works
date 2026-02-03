@@ -18,6 +18,13 @@ fun main() {
     println("Grade Kamu: $grade")
     // Panggil DI DALAM MAIN()
     println("Status: ${calculateStatus(score)}")
+    // Tambahkan di akhir main()
+    val studentId: String? = null
+
+    // Jika null, gunakan nilai default 0
+    val idLength = studentId?.length ?: 0
+
+    println("Panjang ID: $idLength")
 }
 
 // Tulis DI LUAR MAIN()
