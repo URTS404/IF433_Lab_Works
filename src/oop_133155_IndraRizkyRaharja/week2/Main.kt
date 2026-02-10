@@ -1,36 +1,62 @@
 package oop_133155_IndraRizkyRaharja.week2
 
 import java.util.Scanner
+import kotlin.random.Random
 
 fun main() {
     val scanner = Scanner(System.`in`)
 
-    println("=== SISTEM DENDA PERPUSTAKAAN ===")
+    println("=== RPG BATTLE GAME ===")
 
-    print("Judul Buku: ")
-    val title = scanner.nextLine()
+    // Input nama hero
+    print("Nama Hero: ")
+    val heroName = scanner.nextLine()
 
-    print("Nama Peminjam: ")
-    val name = scanner.nextLine()
+    print("Damage Hero: ")
+    val heroDamage = scanner.nextInt()
+    scanner.nextLine()
 
-    print("Lama Pinjam (hari): ")
-    var duration = scanner.nextInt()
+    val hero = Hero(heroName, heroDamage)
 
-    // Validasi lama pinjam
-    if (duration < 0) {
-        println("Warning: Lama pinjam tidak valid, diubah menjadi 1 hari")
-        duration = 1
+    // Input enemy
+    var enemyHp = 100
+
+    println("\n=== PERTEMPURAN DIMULAI ===")
+    println("$heroName vs Monster")
+
+    while (hero.isAlive() && enemyHp > 0) {
+        println("\nMenu: 1. Serang, 2. Kabur")
+        print("Pilihan: ")
+        val choice = scanner.nextInt()
+
+        if (choice == 1) {
+            // Serangan hero
+            hero.attack("Monster")
+            enemyHp -= hero.baseDamage
+            println("Monster HP: ${if (enemyHp > 0) enemyHp else 0}")
+
+            // Serangan Monster
+            if (enemyHp > 0) {
+                val enemyDamage = Random.nextInt(10, 21)
+                hero.takeDamage(enemyDamage)
+                println("Monster menyerang balik!")
+                println("$heroName HP: ${hero.hp}")
+            }
+        } else if (choice == 2) {
+            println("$heroName kabur!")
+            break
+        }
     }
 
-    // Buat objek Loan
-    val loan = Loan(title, name, duration)
+    // Hasil
+    println("\n=== HASIL ===")
+    if (!hero.isAlive()) {
+        println("Hero kalah!")
+    } else if (enemyHp <= 0) {
+        println("Hero menang!")
+    } else {
+        println("Hero kabur!")
+    }
 
-    // Hitung dan tampilkan denda
-    val fine = loan.calculateFine()
-
-    println("\n=== DETAIL PEMINJAMAN ===")
-    println("Judul: ${loan.bookTitle}")
-    println("Peminjam: ${loan.borrower}")
-    println("Lama Pinjam: ${loan.loanDuration} hari")
-    println("Total Denda: Rp $fine")
+    scanner.close()
 }
