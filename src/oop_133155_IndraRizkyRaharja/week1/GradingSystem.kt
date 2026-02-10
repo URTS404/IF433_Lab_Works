@@ -1,4 +1,4 @@
-package oop_133155_IndraRizkyRaharja.week01
+package oop_133155_IndraRizkyRaharja.week1
 
 fun main() {
     //REFACTOR: Gunakan val dan hapus tipe data eksplisit
