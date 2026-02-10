@@ -5,35 +5,32 @@ import java.util.Scanner
 fun main() {
     val scanner = Scanner(System.`in`)
 
-    println("--- APLIKASI PMB UMN ---")
+    println("=== SISTEM DENDA PERPUSTAKAAN ===")
 
-    print("Masukkan Nama: ")
+    print("Judul Buku: ")
+    val title = scanner.nextLine()
+
+    print("Nama Peminjam: ")
     val name = scanner.nextLine()
 
-    print("Masukkan NIM (Wajib 5 Karakter): ")
-    val nim = scanner.next()
+    print("Lama Pinjam (hari): ")
+    var duration = scanner.nextInt()
 
-    scanner.nextLine() // Bersihkan buffer newLine (Penyakit klasik Scanner!)
-
-    // Validasi di sisi pemanggil (Main)
-    if (nim.length != 5) {
-        println("ERROR: Pendaftaran dibatalkan. NIM harus 5 karakter!")
-        return
+    // Validasi lama pinjam
+    if (duration < 0) {
+        println("Warning: Lama pinjam tidak valid, diubah menjadi 1 hari")
+        duration = 1
     }
 
-    print("Pilih Jalur (1. Reguler, 2. Umum): ")
-    val type = scanner.nextInt()
-    scanner.nextLine()
+    // Buat objek Loan
+    val loan = Loan(title, name, duration)
 
-    if (type == 1) {
-        print("Masukkan Jurusan: ")
-        val major = scanner.nextLine()
-        val s1 = Student(name, nim, major)
-        println("Terdaftar di: ${s1.major} dengan GPA awal ${s1.gpa}")
-    } else if (type == 2) {
-        val s2 = Student(name, nim)
-        println("Terdaftar di: ${s2.major} dengan GPA awal ${s2.gpa}")
-    } else {
-        println("Pilihan ngawur, pendaftaran batal!")
-    }
+    // Hitung dan tampilkan denda
+    val fine = loan.calculateFine()
+
+    println("\n=== DETAIL PEMINJAMAN ===")
+    println("Judul: ${loan.bookTitle}")
+    println("Peminjam: ${loan.borrower}")
+    println("Lama Pinjam: ${loan.loanDuration} hari")
+    println("Total Denda: Rp $fine")
 }
