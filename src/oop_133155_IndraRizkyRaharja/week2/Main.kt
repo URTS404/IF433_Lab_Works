@@ -31,13 +31,13 @@ fun main() {
 
         if (choice == 1) {
             // Serangan hero
-            hero.attack("Monster")
+            hero.attack("Rimika")
             enemyHp -= hero.baseDamage
             println("Monster HP: ${if (enemyHp > 0) enemyHp else 0}")
 
             // Serangan Monster
             if (enemyHp > 0) {
-                val enemyDamage = Random.nextInt(10, 21)
+                val enemyDamage = Random.nextInt(1, 10)
                 hero.takeDamage(enemyDamage)
                 println("Monster menyerang balik!")
                 println("$heroName HP: ${hero.hp}")
