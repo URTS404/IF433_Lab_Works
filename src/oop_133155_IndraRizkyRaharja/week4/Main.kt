@@ -1,20 +1,16 @@
 package oop_133155_IndraRizkyRaharja.week4
 
 fun main() {
-    println("--- Testing Vehicle ---")
-    val generalVehicle = Vehicle(brand = "Sepeda Onthel")
-    generalVehicle.honk()
-    generalVehicle.accelerate()
+    println("--- Testing Employee Hierarchy ---")
 
-    println("\n--- Testing Car ---")
-    val myCar = Car(brand = "Toyota", numberOfDoors = 4)
-    myCar.openTrunk() // Memanggil method milik sendiri
-    myCar.honk() // Memanggil method yang sudah di-override
-    myCar.accelerate() // Memanggil gabungan method Parent dan Child
+    val manager = Manager(name = "Ucup", baseSalary = 10000000)
+    val developer = Developer(name = "Ana", baseSalary = 8000000, programmingLanguage = "Kotlin")
 
-    println("\n--- Testing ElectricCar ---")
-    val myElectricCar = ElectricCar(brand = "Tesla", numberOfDoors = 4, batteryCapacity = 85)
-    myElectricCar.accelerate()
-    myElectricCar.honk()
-    myElectricCar.openTrunk()
+    println("\nManager:")
+    manager.work()
+    println("Bonus Manager: Rp ${manager.calculateBonus()}")
+
+    println("\nDeveloper:")
+    developer.work()
+    println("Bonus Developer: Rp ${developer.calculateBonus()}")
 }
