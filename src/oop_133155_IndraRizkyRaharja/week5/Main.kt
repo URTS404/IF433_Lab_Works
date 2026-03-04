@@ -1,63 +1,39 @@
 package oop_133155_IndraRizkyRaharja.week5
 
 fun main() {
-    val dosen1 = Dosen(nama = "Pak Alex", nidn = "0123456")
-    val admin1 = Admin(nama = "Bu Siti")
+    println("=== SISTEM PEMBAYARAN E-COMMERCE ===")
+    println("PART 4: Implementasi Dasar\n")
 
-    // Polymorphic Collection: List yang berisi tipe Parent, tapi isinya objek Anak
-    val daftarPegawai: List<Pegawai> = listOf(dosen1, admin1)
+    // 1. Membuat objek EWallet dan CreditCard
+    val eWallet = EWallet(
+        accountName = "Indra Rizky Raharja",
+        balance = 100000.0
+    )
 
-    println("=== AKTIVITAS PEGAWAI ===")
-    for (pegawai in daftarPegawai) {
-        // Pemanggilan Runtime Polymorphism
-        pegawai.bekerja()
+    val creditCard = CreditCard(
+        accountName = "Indra Rizky Raharja",
+        limit = 5000000.0
+    )
 
-        // Smart Casting dengan is dan when
-        when (pegawai) {
-            is Dosen -> {
-                println("=> Terdeteksi sebagai Dosen (NIDN: ${pegawai.nidn})")
-                pegawai.mengajar() // Smart cast! Tidak perlu manual casting (as)
-            }
-            is Admin -> {
-                println("=> Terdeteksi sebagai Admin")
-                pegawai.doAdminWork()
-            }
-        }
-        println("------------------------------------------------------------")
-    }
+    // 2. Memasukkan ke dalam list bertipe PaymentMethod (Polymorphism)
+    val daftarPembayaran: List<PaymentMethod> = listOf(eWallet, creditCard)
 
-    // ============================================================
-    // DEMO COMPILE-TIME POLYMORPHISM (METHOD OVERLOADING)
-    // ============================================================
-    println("\n=== DEMO COMPILE-TIME POLYMORPHISM (OVERLOADING) ===")
-    println("Membuktikan Kotlin memanggil method yang tepat berdasarkan parameter")
+    // 3. Informasi awal
+    println("Saldo E-Wallet: Rp. ${eWallet.balance}")
+    println("Limit Credit Card: Rp. ${creditCard.limit}")
     println("-".repeat(60))
 
-    // Instansiasi MathHelper
-    val mathHelper = MathHelper()
+    // 4. Perulangan untuk memproses pembayaran
+    val jumlahPembayaran = 120000.0
+    println("Memproses pembayaran Rp. $jumlahPembayaran dengan semua metode...\n")
 
-    // Memanggil fungsi hitungLuas dengan 1 parameter Int (Luas Persegi)
-    val sisiPersegi = 8
-    val luasPersegi = mathHelper.hitungLuas(sisiPersegi)
-    println("1. Memanggil hitungLuas($sisiPersegi) -> Parameter: 1 Int")
-    println("   → Menghitung luas persegi dengan sisi $sisiPersegi")
-    println("   → Hasil: $luasPersegi")
-    println()
+    for (metode in daftarPembayaran) {
+        // Polymorphism: method yang dipanggil tergantung tipe objek asli
+        metode.processPayment(jumlahPembayaran)
+        println("-".repeat(40))
+    }
 
-    // Memanggil fungsi hitungLuas dengan 2 parameter Int (Luas Persegi Panjang)
-    val panjang = 12
-    val lebar = 5
-    val luasPersegiPanjang = mathHelper.hitungLuas(panjang, lebar)
-    println("2. Memanggil hitungLuas($panjang, $lebar) -> Parameter: 2 Int")
-    println("   → Menghitung luas persegi panjang $panjang x $lebar")
-    println("   → Hasil: $luasPersegiPanjang")
-    println()
-
-    // Memanggil fungsi hitungLuas dengan 1 parameter Double (Luas Lingkaran)
-    val jariJari = 10.5
-    val luasLingkaran = mathHelper.hitungLuas(jariJari)
-    println("3. Memanggil hitungLuas($jariJari) -> Parameter: 1 Double")
-    println("   → Menghitung luas lingkaran dengan jari-jari $jariJari")
-    println("   → Hasil: $luasLingkaran")
-    println()
+    println("\nRekapanUang:")
+    println("Saldo E-Wallet: Rp. ${eWallet.balance}")
+    println("Credit Card - Used: Rp. ${creditCard.usedAmount}, Remaining: Rp. ${creditCard.getRemainingLimit()}")
 }
