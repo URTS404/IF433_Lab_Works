@@ -12,7 +12,6 @@ fun main() {
         // Pemanggilan Runtime Polymorphism
         pegawai.bekerja()
 
-        // pegawai.mengajar() // INI AKAN ERROR karena tipe referensinya adalah Pegawai
         // Smart Casting dengan is dan when
         when (pegawai) {
             is Dosen -> {
@@ -24,6 +23,41 @@ fun main() {
                 pegawai.doAdminWork()
             }
         }
-        println("---")
+        println("------------------------------------------------------------")
     }
+
+    // ============================================================
+    // DEMO COMPILE-TIME POLYMORPHISM (METHOD OVERLOADING)
+    // ============================================================
+    println("\n=== DEMO COMPILE-TIME POLYMORPHISM (OVERLOADING) ===")
+    println("Membuktikan Kotlin memanggil method yang tepat berdasarkan parameter")
+    println("-".repeat(60))
+
+    // Instansiasi MathHelper
+    val mathHelper = MathHelper()
+
+    // Memanggil fungsi hitungLuas dengan 1 parameter Int (Luas Persegi)
+    val sisiPersegi = 8
+    val luasPersegi = mathHelper.hitungLuas(sisiPersegi)
+    println("1. Memanggil hitungLuas($sisiPersegi) -> Parameter: 1 Int")
+    println("   → Menghitung luas persegi dengan sisi $sisiPersegi")
+    println("   → Hasil: $luasPersegi")
+    println()
+
+    // Memanggil fungsi hitungLuas dengan 2 parameter Int (Luas Persegi Panjang)
+    val panjang = 12
+    val lebar = 5
+    val luasPersegiPanjang = mathHelper.hitungLuas(panjang, lebar)
+    println("2. Memanggil hitungLuas($panjang, $lebar) -> Parameter: 2 Int")
+    println("   → Menghitung luas persegi panjang $panjang x $lebar")
+    println("   → Hasil: $luasPersegiPanjang")
+    println()
+
+    // Memanggil fungsi hitungLuas dengan 1 parameter Double (Luas Lingkaran)
+    val jariJari = 10.5
+    val luasLingkaran = mathHelper.hitungLuas(jariJari)
+    println("3. Memanggil hitungLuas($jariJari) -> Parameter: 1 Double")
+    println("   → Menghitung luas lingkaran dengan jari-jari $jariJari")
+    println("   → Hasil: $luasLingkaran")
+    println()
 }
