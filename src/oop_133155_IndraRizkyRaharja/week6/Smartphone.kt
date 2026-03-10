@@ -5,6 +5,6 @@ class Smartphone : Camera, Phone {
     override fun turnOn() {
         super<Camera>.turnOn()   // Menjalankan logika Camera
         super<Phone>.turnOn()    // Menjalankan logika Phone
-        println("Sistem operasi Smartphone berhasil booting.")   // TODO: boleh ubah pesan booting-nya
+        println("Sistem operasi Smartphone berhasil booting.")
     }
 }
