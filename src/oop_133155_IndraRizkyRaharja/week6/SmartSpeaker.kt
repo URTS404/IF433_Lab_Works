@@ -14,6 +14,6 @@ class SmartSpeaker(
     }
 
     fun playMusic(song: String) {
-        println("Memutar lagu $song dari Spotify.")
+        println("Memutar lagu $song dari YT Music.")
     }
 }

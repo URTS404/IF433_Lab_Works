@@ -8,7 +8,7 @@ class SmartHomeHub {
     }
 
     fun turnOffAllSwitches() {
-        println("\n--- Mematikan semua perangkat jika tidak terdeteksi! ---")
+        println("\n--- Mematikan semua perangkat jika tidak terdeteksi bahaya! ---")
         for (device in devices) {
             if (device is Switchable) {   // Smart Casting
                 device.turnOff()
