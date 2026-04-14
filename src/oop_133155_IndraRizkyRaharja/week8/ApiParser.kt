@@ -34,4 +34,19 @@ class ApiParser {
             else -> null // Tipe tidak dikenal atau null -> return null
         }
     }
+
+    fun checkout(product: Product) {
+        // TODO: Ekstrak id dari product menggunakan when (karena sealed class)
+        val productId = when (product) {
+            is Electronic -> product.id // TODO: id dari Electronic
+            is Clothing   -> product.id // TODO: id dari Clothing
+        }
+
+        // TODO: Lempar productId ke JavaPaymentService.processPayment()
+        //       Gunakan !! karena kita yakin Java service selalu mengembalikan Transaction ID
+        val transactionId = JavaPaymentService.processPayment(productId)!!
+
+        // TODO: Print Transaction ID hasil pembayaran
+        println("Pembayaran berhasil! Transaction ID: $transactionId")
+    }
 }
