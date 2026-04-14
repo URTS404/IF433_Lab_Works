@@ -14,7 +14,7 @@ fun main() {
     println("        Durability: ${starterWeapon.durability}")
 
     println()
-    val upgradedItem = starterWeapon.item.copy(damage = 5)
+    val upgradedItem = starterWeapon.item.copy(damage = 25)
     println("[BLACKSMITH] Senjata diupgrade! Damage baru: ${upgradedItem.damage}")
 
     println()
