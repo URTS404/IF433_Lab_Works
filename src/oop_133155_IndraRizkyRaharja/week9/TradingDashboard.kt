@@ -10,4 +10,7 @@ fun main() {
         TradeLog(pair = "Dogecoin", position = "LONG", leverage = 20, roe = -20.0, status = "OPEN"),
         TradeLog(pair = "Popcat", position = "SHORT", leverage = 10, roe = 21.5, status = "CLOSED")
     )
+
+    val closedTrades = tradeHistory
+        .filter { it.status == "CLOSED" }
 }
