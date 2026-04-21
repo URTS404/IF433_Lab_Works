@@ -35,4 +35,13 @@ fun main() {
     worstPerformersString.forEach { println(it) }
     println("\n--- UNIQUE TRADING PAIRS ---")
     println("Pairs traded: $uniquePairs")
+    println("\n--- SUMMARY ---")
+    println("Total Trades  : ${tradeHistory.size}")
+    println("Closed Trades : ${closedTrades.size}")
+    println("Winning Trades: ${winningTrades.size}")
+    println("Losing Trades : ${losingTrades.size}")
+    val winRate = if (closedTrades.isNotEmpty()) {
+        (winningTrades.size.toDouble() / closedTrades.size * 100)
+    } else 0.0
+    println("Win Rate      : ${"%.1f".format(winRate)}%")
 }
