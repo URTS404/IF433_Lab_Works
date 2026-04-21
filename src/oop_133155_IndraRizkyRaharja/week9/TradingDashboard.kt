@@ -31,4 +31,8 @@ fun main() {
     println("=".repeat(40))
     println("\n--- TOP PERFORMERS (PROFIT) ---")
     topPerformersString.forEach { println(it) }
+    println("\n--- WORST PERFORMERS (LOSS) ---")
+    worstPerformersString.forEach { println(it) }
+    println("\n--- UNIQUE TRADING PAIRS ---")
+    println("Pairs traded: $uniquePairs")
 }
