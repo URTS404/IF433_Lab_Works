@@ -6,4 +6,6 @@ fun main() {
     coinRepo.add(Coin("Dogecoin",    2.500))
     coinRepo.add(Coin("MemeCore",   10.000))
     coinRepo.add(Coin("wojak",       4000.0))
+
+    val response = ApiResponse("200 OK", coinRepo.getAll())
 }
