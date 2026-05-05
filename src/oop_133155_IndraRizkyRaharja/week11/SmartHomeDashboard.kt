@@ -42,4 +42,11 @@ fun main() {
             powerLoad = 10
         )
     )
+
+    println("\n=== PENCARIAN PERANGKAT ===")
+    val searchResult = homeDevices.find { it.category == "Camera" }
+    searchResult?.let {
+        println("Perangkat ditemukan:")
+        println(it.diagnose())
+    } ?: println("Perangkat tidak ditemukan.")
 }
