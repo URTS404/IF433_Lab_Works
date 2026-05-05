@@ -13,4 +13,15 @@ fun main() {
         println("(LOG) Lampu dikonfigurasi: ${it.name}")
         homeDevices.add(it)
     }
+
+    SmartDevice(
+        name     = "Ezviz Outdoor",
+        category = "Camera"
+    ).apply {
+        isOnline  = true
+        powerLoad = 5
+    }.also {
+        println("(LOG) Kamera terhubung")
+        homeDevices.add(it)
+    }
 }
