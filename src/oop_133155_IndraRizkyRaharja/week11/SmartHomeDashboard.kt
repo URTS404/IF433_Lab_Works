@@ -49,4 +49,13 @@ fun main() {
         println("Perangkat ditemukan:")
         println(it.diagnose())
     } ?: println("Perangkat tidak ditemukan.")
+
+    println("\n=== SUMMARY SMART HOME ===")
+    with(homeDevices) {
+        println("========================================")
+        println("       SMART HOME DASHBOARD             ")
+        println("========================================")
+        println("Total Perangkat Terdaftar : $size")
+        println("----------------------------------------")
+    }
 }
