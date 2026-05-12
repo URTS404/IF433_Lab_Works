@@ -16,3 +16,12 @@ fun dispenseKibble(
     return availableGram - requestedGram
     }
 }
+
+fun main() {
+    var currentKibbleStock = 50
+    println("========================================")
+    println("      SMART PET FEEDER SYSTEM           ")
+    println("========================================")
+    println("Stok kibble awal : $currentKibbleStock gr")
+    println("----------------------------------------")
+}
