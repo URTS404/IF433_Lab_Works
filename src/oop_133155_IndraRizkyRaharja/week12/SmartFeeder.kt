@@ -52,4 +52,16 @@ fun main() {
     } finally {
         println("Siklus pengecekan dispenser pagi selesai.")
     }
+
+    println("\n[JADWAL MAKAN 2 - SORE]")
+    val stockAfterRefill = 1000
+    println("Kibble diisi ulang. Stok baru: $stockAfterRefill gr")
+
+    runCatching {
+        dispenseKibble(
+            requestedGram = 30,
+            availableGram = stockAfterRefill,
+            isJammed      = false
+        )
+    }
 }
