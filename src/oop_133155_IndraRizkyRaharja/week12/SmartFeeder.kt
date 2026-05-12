@@ -14,7 +14,6 @@ fun dispenseKibble(
     }
     println("Kibble berhasil dikeluarkan!")
     return availableGram - requestedGram
-    }
 }
 
 fun main() {
@@ -71,4 +70,12 @@ fun main() {
         println("Peringatan ke Pemilik: ${error.message}")
         println("(Opsional: Berikan chicken jerky secara manual)")
     }
+
+    println("\n========================================")
+    println("         LAPORAN AKHIR SISTEM           ")
+    println("========================================")
+    println("Stok kibble tersisa : $currentKibbleStock gr")
+    println("Status sistem       : Berjalan normal")
+    println("========================================")
+    println("Pipeline Smart Feeder selesai tanpa crash!")
 }
