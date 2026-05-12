@@ -24,4 +24,29 @@ fun main() {
     println("========================================")
     println("Stok kibble awal : $currentKibbleStock gr")
     println("----------------------------------------")
+
+    println("\n[JADWAL MAKAN 1 - PAGI]")
+    try {
+        val sisa = dispenseKibble(
+            requestedGram = 80,
+            availableGram = currentKibbleStock,
+            isJammed      = false
+        )
+        currentKibbleStock = sisa
+        println("Stok setelah makan pagi: $currentKibbleStock gr")
+
+    } catch (e: DispenserJamException) {
+        println("ERROR HARDWARE  : ${e.message}")
+        println("Tindakan        : Periksa dan bersihkan dispenser secara manual.")
+
+    } catch (e: FoodEmptyException) {
+        println("ERROR STOK      : ${e.message}")
+        println("Tindakan        : Segera isi ulang wadah kibble.")
+
+    } catch (e: IllegalArgumentException) {
+        println("ERROR INPUT     : ${e.message}")
+
+    } catch (e: Exception) {
+        println("ERROR TAK TERDUGA: ${e.message}")
+    }
 }
