@@ -80,4 +80,26 @@ fun main() {
     println("\n=== MEMUAT DATA TRADE ===")
     val loadedData = loadTrades(path = csvPath)
     val totalPnl = loadedData.sumOf { it.pnl }
+
+    println("\n========================================")
+    println("     CRYPTO TRADE LOGGER - LAPORAN      ")
+    println("========================================")
+    println("Total trade valid dimuat : ${loadedData.size}")
+    println("----------------------------------------")
+    println("Detail Setiap Trade:")
+
+    loadedData.forEach { trade ->
+        val pnlLabel = if (trade.pnl >= 0) "PROFIT" else "LOSS"
+        println(
+            "  [#${trade.id}] ${trade.symbol.padEnd(10)} | " +
+                    "${trade.type.padEnd(5)} | " +
+                    "Margin: \$${trade.margin} | " +
+                    "PnL: \$${trade.pnl} ($pnlLabel)"
+        )
+    }
+
+    println("----------------------------------------")
+    println("==== TOTAL PnL BERSIH: $totalPnl ====")
+    println("========================================")
+    println("Pipeline Trade Logger selesai tanpa crash!")
 }
