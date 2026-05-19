@@ -76,4 +76,8 @@ fun main() {
 
     File(csvPath).appendText("CORRUPT_ID,DOGEUSDT,Hold,XX,YY\n")
     println("Baris data korup berhasil disuntikkan ke $csvPath untuk pengujian.")
+
+    println("\n=== MEMUAT DATA TRADE ===")
+    val loadedData = loadTrades(path = csvPath)
+    val totalPnl = loadedData.sumOf { it.pnl }
 }
