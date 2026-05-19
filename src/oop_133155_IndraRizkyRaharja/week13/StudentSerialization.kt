@@ -9,17 +9,17 @@ fun Student.toCsv(): String = "$name,$age,$gpa"
 
 // Deserialization (CSV -> Object)
 fun fromCsv(line: String): Student {
-    val parts = line.split(delimiters = ",")
-    return Student(name = parts[0], age = parts[1].toInt(), gpa = parts[2].toDouble())
+    val parts = line.split(",")
+    return Student(parts[0],parts[1].toInt(),parts[2].toDouble())
 }
 
 fun saveStudents(students: List<Student>, path: String) {
-    File(pathname = path).writeText(students.joinToString(separator = "\n") { it.toCsv() })
+    File(path).writeText(students.joinToString("\n") { it.toCsv() })
 }
 
 fun loadStudents(path: String): List<Student> {
     return try {
-        File(pathname = path).readLines().map { fromCsv(line = it) }
+        File(path).readLines().map { fromCsv(it) }
     } catch (e: FileNotFoundException) {
         println("Error: File tidak ditemukan!")
         emptyList()
@@ -31,9 +31,9 @@ fun main() {
         Student(name = "Alice", age = 20, gpa = 3.8),
         Student(name = "Bob",   age = 22, gpa = 3.5)
     )
-    saveStudents(students, path = "students.csv")
+    saveStudents(students, "students.csv")
 
-    val loaded = loadStudents(path = "students.csv")
+    val loaded = loadStudents("students.csv")
     println("=== LOADED STUDENT DATA ===")
     loaded.forEach { println(it) }
 }

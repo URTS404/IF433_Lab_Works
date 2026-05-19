@@ -3,7 +3,7 @@ import java.io.File
 
 fun main() {
     println("=== TEST UNSAFE RESOURCE HANDLING ===")
-    val unsafeFile = File(pathname = "unsafe_logs.txt")
+    val unsafeFile = File("unsafe_logs.txt")
     // Membuka stream secara manual
     val writer = unsafeFile.printWriter()
 
