@@ -73,4 +73,7 @@ fun main() {
     )
     val csvPath = "crypto_trades.csv"
     saveTrades(trades, path = csvPath)
+
+    File(csvPath).appendText("CORRUPT_ID,DOGEUSDT,Hold,XX,YY\n")
+    println("Baris data korup berhasil disuntikkan ke $csvPath untuk pengujian.")
 }
