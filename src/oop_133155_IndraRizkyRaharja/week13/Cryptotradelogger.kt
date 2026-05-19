@@ -36,3 +36,13 @@ fun saveTrades(trades: List<TradeRecord>, path: String) {
     }
     println("${trades.size} trade berhasil disimpan ke $path")
 }
+
+fun loadTrades(path: String): List<TradeRecord> {
+    return try {
+        File(path).readLines()
+            .mapNotNull { fromCsvTrade(it) }
+    } catch (e: FileNotFoundException) {
+        println("Error: File $path tidak ditemukan!")
+        emptyList()
+    }
+}
