@@ -60,3 +60,39 @@ class SafeOrderProcessor(
         notifier.sendNotification(itemName, pricing.javaClass.simpleName)
     }
 }
+
+interface PricingStrategy {
+    fun calculate(price: Double): Double
+}
+
+class RegularPricing : PricingStrategy {
+    override fun calculate(price: Double) = price
+}
+
+class VipPricing : PricingStrategy {
+    override fun calculate(price: Double) = price * 0.90
+}
+
+fun main() {
+    println("========================================")
+    println("   E-COMMERCE ORDER PROCESSING SYSTEM  ")
+    println("========================================")
+    val repo     : OrderRepository    = CsvOrderRepository("orders.csv")
+    val notifier : NotificationService = EmailNotifier()
+    val processor = SafeOrderProcessor(repo, notifier)
+    println("\n--- Pesanan 1: Pelanggan REGULAR ---")
+    processor.processOrder(
+        itemName  = "Sepatu Lari",
+        basePrice = 400_000.0,
+        pricing   = RegularPricing()
+    )
+    println("\n--- Pesanan 2: Pelanggan VIP ---")
+    processor.processOrder(
+        itemName  = "Jaket Premium",
+        basePrice = 1_750_000.0,
+        pricing   = VipPricing()
+    )
+    println("\n========================================")
+    println("Pipeline Order Processing selesai!")
+    println("========================================")
+}
